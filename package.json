@@ -1,0 +1,14 @@
+{
+  "name": "nat-blockchain",
+  "version": "1.0.0",
+  "author": "Jacky Tang",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackytck/nat-blockchain"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
+}
