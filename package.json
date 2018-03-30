@@ -4,7 +4,7 @@
   "author": "Jacky Tang",
   "main": "index.js",
   "scripts": {
-    "dev-test": "nodemon test/dev-test.js"
+    "dev-test": "nodemon test/index.js"
   },
   "repository": {
     "type": "git",
