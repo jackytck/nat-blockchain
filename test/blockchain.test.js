@@ -38,4 +38,18 @@ describe('Blockchain', () => {
 
     expect(bc.isValidChain({ chain: bc.chain })).toBe(false)
   })
+
+  it('replaces the chain with a valid chain', () => {
+    bc2.addBlock({ data: 'goo' })
+    bc.replaceChain({ chain: bc2.chain })
+
+    expect(bc.chain).toEqual(bc2.chain)
+  })
+
+  it('does not replace the chain with one of less than or equal to length', () => {
+    bc.addBlock({ data: 'foo' })
+    bc.replaceChain({ chain: bc2.chain })
+
+    expect(bc.chain).not.toEqual(bc2.chain)
+  })
 })
