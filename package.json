@@ -4,6 +4,8 @@
   "author": "Jacky Tang",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/app",
+    "dev": "nodemon ./src/app",
     "test": "jest --watchAll",
     "dev-test": "nodemon test/dev-test"
   },
