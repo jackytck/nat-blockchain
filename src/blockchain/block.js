@@ -38,8 +38,8 @@ class Block {
 
     do {
       timestamp = Date.now()
-      hash = Block.hash({ timestamp, lastHash, data, nonce })
       nonce++
+      hash = Block.hash({ timestamp, lastHash, data, nonce })
     } while (hash.substring(0, DIFFICULTY) !== '0'.repeat(DIFFICULTY))
 
     return new this({ timestamp, lastHash, hash, data, nonce })
