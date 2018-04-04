@@ -40,8 +40,6 @@ class P2PServer {
 
   messageHandler (socket) {
     socket.on('message', message => {
-      const data = JSON.parse(message)
-      console.log('data', data)
       const chain = JSON.parse(message)
 
       this.blockchain.replaceChain({ chain })
@@ -52,6 +50,9 @@ class P2PServer {
     socket.send(JSON.stringify(this.blockchain.chain))
   }
 
+  syncChains () {
+    this.sockets.forEach(socket => this.sendChain(socket))
+  }
 }
 
 module.exports = P2PServer
