@@ -9,6 +9,9 @@
     "test": "jest --watchAll",
     "dev-test": "nodemon test/dev-test"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jackytck/nat-blockchain"
