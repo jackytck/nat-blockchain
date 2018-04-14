@@ -11,7 +11,7 @@ const app = express()
 const bc = new Blockchain()
 const wallet = new Wallet()
 const tp = new TransactionPool()
-const p2pServer = new P2PServer({ blockchain: bc })
+const p2pServer = new P2PServer({ blockchain: bc, transactionPool: tp })
 
 app.use(bodyParser.json())
 
