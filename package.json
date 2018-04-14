@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node ./src/app",
     "dev": "nodemon ./src/app",
+    "node1": "yarn run dev",
+    "node2": "HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://127.0.0.1:5001 yarn dev",
+    "node3": "HTTP_PORT=3003 P2P_PORT=5003 PEERS=ws://localhost:5001,ws://localhost:5002 yarn dev",
     "test": "jest --watchAll",
     "dev-test": "nodemon test/dev-test"
   },
