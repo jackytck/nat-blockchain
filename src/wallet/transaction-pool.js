@@ -1,4 +1,4 @@
-const Transaction = require('./transacton')
+const Transaction = require('./transaction')
 
 class TransactionPool {
   constructor () {
@@ -34,7 +34,7 @@ class TransactionPool {
         return false
       }
 
-      if (!Transaction.verifyTransaction(t)) {
+      if (!Transaction.verifyTransaction({ transaction: t })) {
         console.error(`Invalid transaction from ${t.input.address}.`)
         return false
       }
