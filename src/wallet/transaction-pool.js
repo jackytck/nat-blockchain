@@ -1,3 +1,5 @@
+const Transaction = require('./transacton')
+
 class TransactionPool {
   constructor () {
     this.transactions = []
@@ -15,6 +17,30 @@ class TransactionPool {
 
   existingTransaction ({ address }) {
     return this.transactions.find(t => t.input.address === address)
+  }
+
+  validTransactions () {
+    const sumTransactionOutput = array => {
+      return array.reduce((total, output) => {
+        return total + output.amount
+      }, 0)
+    }
+
+    return this.transactions.filter(t => {
+      const outputTotal = sumTransactionOutput(t.outputs)
+
+      if (t.input.amount !== outputTotal) {
+        console.error(`Invalid transaction from ${t.input.address}.`)
+        return false
+      }
+
+      if (!Transaction.verifyTransaction(t)) {
+        console.error(`Invalid transaction from ${t.input.address}.`)
+        return false
+      }
+
+      return true
+    })
   }
 }
 
