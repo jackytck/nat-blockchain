@@ -1,15 +1,17 @@
 const TransactionPool = require('../../src/wallet/transaction-pool')
 const Wallet = require('../../src/wallet')
+const Blockchain = require('../../src/blockchain')
 
 describe('TransactionPool', () => {
-  let tp, senderWallet, transaction
+  let tp, senderWallet, transaction, bc
 
   beforeEach(() => {
     tp = new TransactionPool()
+    bc = new Blockchain()
     senderWallet = new Wallet()
     const recipient = 'r4nd-4dr355'
     const amount = 30
-    transaction = senderWallet.createTransaction({ recipient, amount, transactionPool: tp })
+    transaction = senderWallet.createTransaction({ recipient, amount, blockchain: bc, transactionPool: tp })
   })
 
   it('adds a transaction to the pool', () => {
@@ -40,6 +42,7 @@ describe('TransactionPool', () => {
         transaction = senderWallet.createTransaction({
           recipient: 'r4nd-4dr355',
           amount: 50,
+          blockchain: bc,
           transactionPool: tp
         })
         if (i % 2 === 0) {

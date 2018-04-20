@@ -1,12 +1,14 @@
 const Wallet = require('../../src/wallet')
 const TransactionPool = require('../../src/wallet/transaction-pool')
+const Blockchain = require('../../src/blockchain')
 
 describe('Wallet', () => {
-  let wallet, tp
+  let wallet, tp, bc
 
   beforeEach(() => {
     wallet = new Wallet()
     tp = new TransactionPool()
+    bc = new Blockchain()
   })
 
   describe('creating a transaction', () => {
@@ -15,12 +17,12 @@ describe('Wallet', () => {
     beforeEach(() => {
       sendAmount = 50
       recipient = 'r4nd0m-4ddr355'
-      transaction = wallet.createTransaction({ recipient, amount: sendAmount, transactionPool: tp })
+      transaction = wallet.createTransaction({ recipient, amount: sendAmount, blockchain: bc, transactionPool: tp })
     })
 
     describe('and doing the same transaction', () => {
       beforeEach(() => {
-        wallet.createTransaction({ recipient, amount: sendAmount, transactionPool: tp })
+        wallet.createTransaction({ recipient, amount: sendAmount, blockchain: bc, transactionPool: tp })
       })
 
       it('doubles the `sendAmount` subtracted from the wallet balance', () => {

@@ -20,7 +20,9 @@ class Wallet {
     return this.keyPair.sign(dataHash)
   }
 
-  createTransaction ({ recipient, amount, transactionPool }) {
+  createTransaction ({ recipient, amount, blockchain, transactionPool }) {
+    this.balance = this.calculateBalance({ blockchain })
+
     if (amount > this.balance) {
       console.log(`Amount: ${amount} exceeds current balance: ${this.balance}`)
       return
@@ -37,7 +39,7 @@ class Wallet {
     return transaction
   }
 
-  calculateBalance (blockchain) {
+  calculateBalance ({ blockchain }) {
     let balance = this.balance
     let transactions = []
     blockchain.chain.forEach(block => block.data.forEach(transaction => {
